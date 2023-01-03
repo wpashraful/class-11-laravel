@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('authors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('image')->default('https://picsum.photos/536/354');
+            $table->string('twitterLink')->nullable();
+            $table->string('githubLink')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

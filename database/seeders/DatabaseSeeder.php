@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\review;
 use App\Models\Series;
 use App\Models\Topic;
 use App\Models\User;
@@ -29,6 +30,12 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        User::create([
+            'name' => 'Ashraful Alam',
+            'email' =>  'ashrafulalamsajal@gmail.com',
+            'password' => bcrypt('password'),
+            'type'      => 1
+        ]);
 
         $series = [
             [
@@ -85,9 +92,10 @@ class DatabaseSeeder extends Seeder
                     'name' => $author
                 ]);
             }
-
+        Author::factory(10)->create();
         User::factory(50)->create();
         Course::factory(100)->create();
+
 
         $courses = Course::all();
 
@@ -105,6 +113,8 @@ class DatabaseSeeder extends Seeder
            $series_id_array = Series::all()->random(rand(1, 5))->pluck('id')->toArray();
            $course->series()->attach($series_id_array);
        }
+
+        Review::factory(100)->create();
 
 
     }

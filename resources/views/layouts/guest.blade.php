@@ -28,10 +28,26 @@
                     </div>
 
                     <!--Signup&login button-->
+
                     <div class="flex items-center">
-                        <a href="#" class="text-sm font-medium text-gray-500 hover:text-gray-900">Sign in</a>
-                        <a href="#" class="ml-8 inline-flex items-center justify-center rounded border border-transparent bg-black px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-500">Sign up</a>
+                        @if(Auth::check())
+                            <span>Welcome : {{Auth::user()->name}}</span>
+                        @if(Auth::user()->type === 1)
+                                <a href="{{route('dashboard')}}" class="ml-8 inline-flex items-center justify-center rounded border border-transparent bg-black px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-500">Dashboard</a>
+
+                        @endif
+                            <a href="#" class="ml-8 inline-flex items-center justify-center rounded border border-transparent bg-black px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-500">Submit a course</a>
+                            <form method="Post" action="{{route('logout')}}">
+                                @csrf
+                                <button class="mx-4 text-red-600" type="submit"> Logout</button>
+                            </form>
+                        @else
+
+                        <a href="{{route('login')}}" class="text-sm font-medium text-gray-500 hover:text-gray-900">Log in</a>
+                        <a href="{{route('register')}}" class="ml-8 inline-flex items-center justify-center rounded border border-transparent bg-black px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-500">Sign Up</a>
+                        @endif
                     </div>
+
                 </header>
 
             </div>
